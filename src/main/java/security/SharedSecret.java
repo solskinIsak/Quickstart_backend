@@ -2,6 +2,11 @@ package security;
 
 import java.security.SecureRandom;
 
+
+//TODO ASK THOMAS TO EXPLAIN THE PURPOSE OF THIS CLASS
+//TODO SPØRG THOMAS OM HVAD MENINGEN MED DENNE CLASS ER
+//TODO MUIY CORTANDO ESPANIOL ES CALABRIOS DOS LES IMPORTANTES
+
 /* This generates a secure random per execution of the server
  * A server restart, will generate a new key, making all existing tokens invalid
  * For production (and if a load-balancer is used) come up with a persistent key strategy */

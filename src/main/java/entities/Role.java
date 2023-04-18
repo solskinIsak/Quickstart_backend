@@ -13,15 +13,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Plaul
- */
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Basic(optional = false)
     @NotNull
@@ -31,13 +28,15 @@ public class Role implements Serializable {
     @ManyToMany(mappedBy = "roleList")
     private List<User> userList;
 
+    // Null args constructor
     public Role() {
     }
-
+    // Constructor
     public Role(String roleName) {
         this.roleName = roleName;
     }
 
+    // Getters & Setters
     public String getRoleName() {
         return roleName;
     }

@@ -5,22 +5,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import security.errorhandling.AuthenticationException;
 
-/**
- * @author lam@cphbusiness.dk
- */
 public class UserFacade {
 
     private static EntityManagerFactory emf;
     private static UserFacade instance;
 
+    //Null args constructor
     private UserFacade() {
     }
 
-    /**
-     *
-     * @param _emf
-     * @return the instance of this facade.
-     */
+    //This method returns a instance of the UserFacade Class
     public static UserFacade getUserFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
@@ -28,7 +22,7 @@ public class UserFacade {
         }
         return instance;
     }
-
+    //  Method retrieves a user from username and password and verifies user, then returns user once successfully verified.
     public User getVerifiedUser(String username, String password) throws AuthenticationException {
         EntityManager em = emf.createEntityManager();
         User user;

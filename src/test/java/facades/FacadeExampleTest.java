@@ -1,7 +1,8 @@
 package facades;
 
+import entities.EntityExample;
 import utils.EMF_Creator;
-import entities.RenameMe;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -39,9 +40,9 @@ public class FacadeExampleTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
+            em.createNamedQuery("EntityExample.deleteAllRows").executeUpdate();
+            em.persist(new EntityExample("Some txt", "More text"));
+            em.persist(new EntityExample("aaa", "bbb"));
 
             em.getTransaction().commit();
         } finally {
@@ -57,7 +58,7 @@ public class FacadeExampleTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() throws Exception {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        assertEquals(2, facade.getEntityCount(), "Expects two rows in the database");
     }
     
 

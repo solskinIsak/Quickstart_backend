@@ -18,6 +18,7 @@ public class ApplicationConfig extends Application {
      * It is automatically populated with
      * all resources defined in the project.
      * If required, comment out calling this method in getClasses().
+     * TODO: IF NOT ADDED AUTOMATICALLY ADD RESOURCE MANUALLY BY USING "resources.add" function.
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
 
@@ -26,7 +27,7 @@ public class ApplicationConfig extends Application {
         resources.add(errorhandling.GenericExceptionMapper.class);
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         resources.add(rest.DemoResource.class);
-        resources.add(rest.RenameMeResource.class);
+        resources.add(ExampleResource.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
         resources.add(security.RolesAllowedFilter.class);

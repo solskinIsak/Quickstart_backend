@@ -1,26 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package facades;
 
-import dtos.RenameMeDTO;
-import entities.RenameMe;
+import dtos.ExampleDTO;
+import entities.EntityExample;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
-/**
- *
- * @author tha
- */
 public class Populator {
+
+    // Methods creates entities with a First and a Last name and pushes them to the DB
     public static void populate(){
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
-        FacadeExample fe = FacadeExample.getFacadeExample(emf);
-        fe.create(new RenameMeDTO(new RenameMe("First 1", "Last 1")));
-        fe.create(new RenameMeDTO(new RenameMe("First 2", "Last 2")));
-        fe.create(new RenameMeDTO(new RenameMe("First 3", "Last 3")));
+        FacadeExample facadeExample = FacadeExample.getFacadeExample(emf);
+        facadeExample.create(new ExampleDTO(new EntityExample("Firstname 1", "Lastname 1")));
+        facadeExample.create(new ExampleDTO(new EntityExample("Firstname 2", "Lastname 2")));
+        facadeExample.create(new ExampleDTO(new EntityExample("Firstname 3", "Lastname 3")));
     }
     
     public static void main(String[] args) {

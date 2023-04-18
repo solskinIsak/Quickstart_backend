@@ -1,19 +1,16 @@
 package facades;
 
-import dtos.RenameMeDTO;
-import entities.RenameMe;
+import dtos.ExampleDTO;
+import entities.EntityExample;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
-//import errorhandling.RenameMeNotFoundException;
 import utils.EMF_Creator;
 
-/**
- *
- * Rename Class to a relevant name Add add relevant facade methods
- */
+/* Rename Class to a relevant name Add add relevant facade methods */
 public class FacadeExample {
 
     private static FacadeExample instance;
@@ -21,67 +18,65 @@ public class FacadeExample {
     
     //Private Constructor to ensure Singleton
     private FacadeExample() {}
-    
-    
-    /**
-     * 
-     * @param _emf
-     * @return an instance of this facade class.
-     */
-    public static FacadeExample getFacadeExample(EntityManagerFactory _emf) {
+
+        // Method returns an instance of the FacadeExample class
+    public static FacadeExample getFacadeExample(EntityManagerFactory entityManagerFactory) {
         if (instance == null) {
-            emf = _emf;
+            emf = entityManagerFactory;
             instance = new FacadeExample();
         }
         return instance;
     }
 
+        // Method returns EntityManager
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    public RenameMeDTO create(RenameMeDTO rm){
-        RenameMe rme = new RenameMe(rm.getDummyStr1(), rm.getDummyStr2());
+
+        // Method creates an Entity together with a DTO as a base.
+    public ExampleDTO create(ExampleDTO exampleDTO){
+        EntityExample entityExample = new EntityExample(exampleDTO.getStr1(), exampleDTO.getStr2());
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(rme);
+            em.persist(exampleDTO);
             em.getTransaction().commit();
         } finally {
             em.close();
         }
-        return new RenameMeDTO(rme);
+        return new ExampleDTO(entityExample);
     }
-    public RenameMeDTO getById(long id) { //throws RenameMeNotFoundException {
-        EntityManager em = emf.createEntityManager();
-        RenameMe rm = em.find(RenameMe.class, id);
-//        if (rm == null)
-//            throw new RenameMeNotFoundException("The RenameMe entity with ID: "+id+" Was not found");
-        return new RenameMeDTO(rm);
+    //  Method returns a DTO based on entities ID
+    public ExampleDTO getById(long id) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityExample entityExample = entityManager.find(EntityExample.class, id);
+
+        return new ExampleDTO(entityExample);
     }
-    
-    //TODO Remove/Change this before use
-    public long getRenameMeCount(){
+
+    // this method is used for testing
+    public long getEntityCount(){
         EntityManager em = getEntityManager();
         try{
-            long renameMeCount = (long)em.createQuery("SELECT COUNT(r) FROM RenameMe r").getSingleResult();
-            return renameMeCount;
+            long entityCount = (long)em.createQuery("SELECT COUNT(r) FROM EntityExample r").getSingleResult();
+            return entityCount;
         }finally{  
             em.close();
         }
     }
-    
-    public List<RenameMeDTO> getAll(){
-        EntityManager em = emf.createEntityManager();
-        TypedQuery<RenameMe> query = em.createQuery("SELECT r FROM RenameMe r", RenameMe.class);
-        List<RenameMe> rms = query.getResultList();
-        return RenameMeDTO.getDtos(rms);
+
+        // Method pulls a list of entities from database and returns it as a List of DTOs
+    public List<ExampleDTO> getAll(){
+        EntityManager entityManager = emf.createEntityManager();
+        TypedQuery<EntityExample> query = entityManager.createQuery("SELECT r FROM EntityExample r", EntityExample.class);
+        List<EntityExample> entityExampleList = query.getResultList();
+        return ExampleDTO.getDtos(entityExampleList);
     }
-    
+        // Main
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
-        FacadeExample fe = getFacadeExample(emf);
-        fe.getAll().forEach(dto->System.out.println(dto));
+        FacadeExample facadeExample = getFacadeExample(emf);
+        facadeExample.getAll().forEach(dto->System.out.println(dto));
     }
 
 }
