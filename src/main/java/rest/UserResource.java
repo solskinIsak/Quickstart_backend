@@ -18,7 +18,7 @@ import utils.EMF_Creator;
 
 
 @Path("info")
-public class DemoResource {
+public class UserResource {
     
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     @Context

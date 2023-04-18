@@ -17,6 +17,8 @@ public class ExampleDTO {
         this.str1 = String1;
         this.str2 = String2;
     }
+
+
     // Method that returns a list of DTOs
     public static List<ExampleDTO> getDtos(List<EntityExample> entityExamples){
         List<ExampleDTO> exampleDTOList = new ArrayList();
