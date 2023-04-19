@@ -1,6 +1,7 @@
 package facades;
 
 import com.google.gson.Gson;
+import dtos.ChuckJokeDTO;
 import dtos.DadJokeDTO;
 
 import javax.persistence.EntityManager;
@@ -10,18 +11,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class DadJokeFacade {
+public class JokeFacade {
 
-    private static DadJokeFacade instance;
+    private static JokeFacade instance;
     private static EntityManagerFactory entityManagerFactory;
 
-    private DadJokeFacade(){}
+    private JokeFacade(){}
 
     // Method returns an instance of the FacadeExample class
-    public static DadJokeFacade getDadJokeFacade(EntityManagerFactory entityManagerFactory1){
+    public static JokeFacade getDadJokeFacade(EntityManagerFactory entityManagerFactory1){
         if( instance == null) {
             entityManagerFactory = entityManagerFactory1;
-            instance = new DadJokeFacade();
+            instance = new JokeFacade();
         }
         return instance;
     }
@@ -45,4 +46,8 @@ public class DadJokeFacade {
     public DadJokeDTO createDadJokeDTO(String input){
         return GSON.fromJson(input,DadJokeDTO.class);
     }
+    public ChuckJokeDTO createChuckJokeDTO(String input){
+        return GSON.fromJson(input,ChuckJokeDTO.class);
+    }
+
 }
