@@ -19,7 +19,7 @@ public class JokeResource {
 
     private EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     Gson GSON = new Gson().newBuilder().setPrettyPrinting().create();
-    private JokeFacade FACADE = JokeFacade.getDadJokeFacade(EMF);
+    private JokeFacade FACADE = JokeFacade.getJokeFacade(EMF);
 
 @GET
 @Produces({MediaType.APPLICATION_JSON})

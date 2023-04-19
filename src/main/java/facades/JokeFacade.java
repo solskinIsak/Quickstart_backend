@@ -19,7 +19,7 @@ public class JokeFacade {
     private JokeFacade(){}
 
     // Method returns an instance of the FacadeExample class
-    public static JokeFacade getDadJokeFacade(EntityManagerFactory entityManagerFactory1){
+    public static JokeFacade getJokeFacade(EntityManagerFactory entityManagerFactory1){
         if( instance == null) {
             entityManagerFactory = entityManagerFactory1;
             instance = new JokeFacade();
