@@ -48,7 +48,7 @@ public class UserResource {
             em.close();
         }
     }
-
+        // endpoints that limit visibillity to a specifik role using the @rolesallowed annotation.
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
