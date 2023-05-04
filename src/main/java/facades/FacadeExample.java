@@ -39,7 +39,7 @@ public class FacadeExample {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(exampleDTO);
+            em.persist(entityExample);
             em.getTransaction().commit();
         } finally {
             em.close();
